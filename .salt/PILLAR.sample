@@ -1,0 +1,37 @@
+#
+# This file contains default values which are used
+# by the salt states deploying your project.
+# you may copy them to your relevant PILLAR file
+# before editing them.
+# If you need to add variables, this is where to begin.
+# Please keep defaults in there, but real passwords
+# must be putted inside pillar
+#
+# replace project_name in your pillar by
+# the current projectname
+# you can also merge parts of this file
+# with the relevant pillar
+makina-states.projectname:
+  data:
+    domain: "{fqdn}"
+    node_ver: '0.10.28'
+    node_hash: '4b9cf9437decea3d9913b694ea2e9b0a06ced2dd'
+    troot: '{project_root}/countly'
+    turl: https://github.com/Countly/countly-server.git
+    rev: "v14.08"
+    node: /srv/apps/node/{node_ver}/bin/node
+    npm: /srv/apps/node/{node_ver}/bin/npm
+    api_port: 3003
+    front_port: 3002
+    nginx_top: salt://makina-projects/{name}/files/nginx.upstreams.conf
+    nginx_vhost: salt://makina-projects/{name}/files/nginx.conf
+    docroot: '{data_root}/static'
+    htaccess: '{project_root}/.htaccess'
+    mongo: "mongodb://foo:bar@localhost:27017/countly?auto_reconnect"
+    configs:
+      - api/config.js
+      - frontend/express/config.js
+      - frontend/express/public/javascripts/countly/countly.config.js
+    users:
+      admin: admin
+# vim:set ft=yaml:
